@@ -34,9 +34,21 @@ target_link_libraries(test_robot
   GTest::gtest_main
 )
 
+add_executable(test_all 
+  test/main.cpp 
+  test/test_robot.cpp
+  test/test_utility.cpp
+)
+
+target_link_libraries(test_all
+  robotLibs
+  GTest::gtest_main
+)
+
 set_target_properties(
   test_utility
   test_robot 
+  test_all
   PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/test
 )
