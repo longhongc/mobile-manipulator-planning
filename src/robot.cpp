@@ -16,8 +16,8 @@ Pose HolonomicMM::getEEPose(const State& state) {
 
 std::vector<Pose> HolonomicMM::FK(const State& state) {
   auto [x, y] = state.base_pose;
-  auto t1 = state.link_angles.at(0);
-  auto t2 = state.link_angles.at(1);
+  auto t1 = state.joint_angles.at(0);
+  auto t2 = state.joint_angles.at(1);
 
   auto l1 = link_lengths_.at(0);
   auto l2 = link_lengths_.at(1);

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(hw3_RRT_with_dynamic)
+project(mobile_manipulator)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(GTest REQUIRED)
@@ -10,10 +10,16 @@ add_library(robotLibs
   src/robot.cpp
 )
 
-# add_executable(solution src/main.cpp)
-# target_link_libraries(solution
-#   myLibs
-# )
+add_library(myLibs
+  src/robot.cpp
+  src/problem.cpp
+  src/rrt_cspace.cpp
+)
+
+add_executable(solution src/main.cpp)
+target_link_libraries(solution
+  myLibs
+)
 
 include(FetchContent)
 FetchContent_Declare(

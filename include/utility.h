@@ -20,7 +20,7 @@ struct Pose {
 
 struct State {
   Coord2D base_pose;
-  std::vector<double> link_angles;
+  std::vector<double> joint_angles;
 };
 
 inline double wrap_angle(double angle) {
@@ -50,7 +50,7 @@ inline double euclidean_distance(std::vector<double> angles1, std::vector<double
 
 inline double euclidean_distance(State s1, State s2) {
   auto base_distance = euclidean_distance(s1.base_pose, s2.base_pose);
-  auto angle_distance = euclidean_distance(s1.link_angles, s2.link_angles);
+  auto angle_distance = euclidean_distance(s1.joint_angles, s2.joint_angles);
 
   return base_distance + angle_distance;
 }

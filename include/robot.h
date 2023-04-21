@@ -17,6 +17,6 @@ class HolonomicMM {
     std::vector<Pose> FK(const State& state);
 
   private:
-    const double base_radius_ = 5.0;
+    const double base_radius_ = 3.0;
     const std::vector<double> link_lengths_{5.0, 5.0};
 };
