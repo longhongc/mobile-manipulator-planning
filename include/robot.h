@@ -15,8 +15,9 @@ class HolonomicMM {
     HolonomicMM();
     Pose getEEPose(const State& state);
     std::vector<Pose> FK(const State& state);
+    bool checkSelfCollision(const State& state, int points = 5);
 
-  private:
-    const double base_radius_ = 3.0;
-    const std::vector<double> link_lengths_{5.0, 5.0};
+    const double base_radius = 3.0;
+    const std::vector<double> link_lengths{5.0, 5.0};
+    double workspace_radius; 
 };

@@ -62,3 +62,4 @@ set_target_properties(
 include(GoogleTest)
 gtest_discover_tests(test_utility)
 gtest_discover_tests(test_robot)
+file(COPY data DESTINATION ${CMAKE_BINARY_DIR})

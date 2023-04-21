@@ -28,7 +28,7 @@ class RRTCSpace {
     void save_path_to_file(std::string file_name);
     void save_search_tree_to_file(std::string file_name);
 
-    const std::chrono::seconds RRT_TIME_LIMIT{5};
+    const std::chrono::seconds RRT_TIME_LIMIT{120};
     
   private:
     std::shared_ptr<Node> find_nearest_node(State state);
@@ -40,7 +40,7 @@ class RRTCSpace {
     State start_state_{{0.0, 0.0}, {0.0, 0.0}};
     Coord2D goal_coord_{0.0, 0.0};
 
-    const double goal_tolerance_ = 5;
+    const double goal_tolerance_ = 2;
     const double rrt_epsilon_ = 5.0;
 
     std::vector<std::shared_ptr<Node>> nodes_;

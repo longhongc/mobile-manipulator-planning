@@ -13,10 +13,14 @@
 int main(int argc, char** argv) {
 
   State start_state{{0, 0}, {0, 0}};
-  Coord2D goal_coord{30, 30};
+  // Coord2D goal_coord{30, 30};
+  Coord2D goal_coord{16, -2};
+
+  std::string obstacles_file =
+    "./data/obstacles.txt";
 
   std::shared_ptr<Problem> problem_ptr =
-    std::make_shared<Problem>();
+    std::make_shared<Problem>(obstacles_file);
 
   RRTCSpace solver(start_state, goal_coord, problem_ptr);
   auto path = solver.solve();

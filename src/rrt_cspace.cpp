@@ -136,9 +136,9 @@ std::shared_ptr<Node> RRTCSpace::sample_node() {
   random_state.joint_angles = random_joints;
 
   // Return nullptr if this new sampled coordinate is invalid
-  // if (problem_ptr_->check_collision(nearest_coord, random_coord)) {
-    // return nullptr;
-  // }
+  if (problem_ptr_->check_collision(nearest_state, random_state)) {
+    return nullptr;
+  }
 
   std::shared_ptr<Node> new_node =
     std::make_shared<Node>(random_state, nearest_node_ptr);
