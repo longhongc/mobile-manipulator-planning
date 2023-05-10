@@ -61,14 +61,16 @@ def draw_robot(base_pose, joint_poses):
     plt.plot([arm_x, x1, x2], [arm_y, y1, y2], color='black', linewidth=0.2)
 
 path = []
-for line in open('path_hard.txt', 'r'):
+for line in open('path_narrow_constraint.txt', 'r'):
     coords = [float(s) for s in line.split(',')]
     path.append(coords)
 
 
 init_coords = [0, 0, 0,
                5, 0, 0,
-               10, 0, 0, 
+               5 + 5 * math.cos(0.25 * math.pi),
+               5 * math.sin(0.25 * math.pi),
+               0,
                0.1]
 path.insert(0, init_coords)
 

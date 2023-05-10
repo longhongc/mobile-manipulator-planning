@@ -203,13 +203,16 @@ void NMMSystem::DoCalcTimeDerivatives(
   (*derivatives)[1] = v * sin(t);
   (*derivatives)[2] = vt;
 
-  if (this->t1_at_limit(t1)) {
-    (*derivatives)[3] = 0;
-    acc[2] = 0;
-  } else {
-    (*derivatives)[3] = vt1;
-  }
+  // if (this->t1_at_limit(t1)) {
+  //   (*derivatives)[3] = 0;
+  //   acc[1] += acc[2] / 2;
+  //   acc[3] += acc[2] / 2;
+  //   acc[2] = 0;
+  // } else {
+  //   (*derivatives)[3] = vt1;
+  // }
 
+  (*derivatives)[3] = vt1;
   (*derivatives)[4] = vt2;
 
   for (int i=0; i < 4; ++i) {

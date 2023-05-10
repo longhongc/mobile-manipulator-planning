@@ -62,10 +62,12 @@ def draw_robot(base_pose, joint_poses):
     plt.plot([arm_x, x1, x2], [arm_y, y1, y2], color='black', linewidth=0.2)
 
 init_base_pose = (0, 0, 0)
-init_joint_poses = [(5, 0), (10, 0)]
+init_joint_poses = [(5, 0),
+        (5 + 5 * math.cos(0.25 * math.pi), 5 * math.sin(0.25 * math.pi))]
+
 draw_robot(init_base_pose, init_joint_poses)
 
-for line in open('path_hard.txt', 'r'):
+for line in open('path_narrow_constraint.txt', 'r'):
     coords = [float(s) for s in line.split(',')]
     base_x, base_y, t0, \
     j1_x, j1_y, _, \

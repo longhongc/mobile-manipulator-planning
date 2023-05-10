@@ -114,9 +114,10 @@ std::shared_ptr<Node> RRTCSpace::sample_node() {
   static std::uniform_real_distribution<double> uniform_sample_wdot(
     problem_ptr_->W_DOT_MIN, problem_ptr_->W_DOT_MAX);
 
+  auto angle_input = uniform_sample_wdot(gen);
   StateInput random_input = 
     {uniform_sample_vdot(gen), uniform_sample_vdot(gen), 
-     uniform_sample_wdot(gen), uniform_sample_wdot(gen)};
+     angle_input, -angle_input};
 
   auto traj = problem_ptr_->robot->forward_simulation(
     nearest_state, random_input);

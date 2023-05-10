@@ -6,7 +6,7 @@
 
 int main(int argc, char** argv) {
   State start_state{
-    {0.0, 0.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 0.0, 0.0}, 0.0};
+    {0.0, 0.0, 0.0, 0.0, 0.25 * M_PI}, {0.0, 0.0, 0.0, 0.0}, 0.0};
   // Coord2D goal_coord{30, 30};
   Coord2D goal_coord{16, -2};
 

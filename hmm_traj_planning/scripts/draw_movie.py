@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import os
 import sys
+import math
 
 # Create plot
 fig, ax = plt.subplots(dpi=300)
@@ -57,14 +58,16 @@ def draw_robot(base_pose, joint_poses):
     plt.plot([x0, x1, x2], [y0, y1, y2], color='black', linewidth=0.2)
 
 path = []
-for line in open('path.txt', 'r'):
+for line in open('path_easy_constraint.txt', 'r'):
     coords = [float(s) for s in line.split(',')]
     path.append(coords)
 
 
 init_coords = [0, 0, 0,
                5, 0, 0,
-               10, 0, 0, 
+               5 + 5 * math.cos(0.25 * math.pi),
+               5 * math.sin(0.25 * math.pi),
+               0, 
                0.1]
 path.insert(0, init_coords)
 

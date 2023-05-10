@@ -7,6 +7,7 @@ Email: longhongc@gmail.com
 import matplotlib.pyplot as plt
 import os
 import sys
+import math
 
 # Create plot
 fig, ax = plt.subplots(dpi=300)
@@ -19,8 +20,8 @@ ax.set_xlabel('X axis')
 ax.set_ylabel('Y axis')
 
 start = (0, 0)
-# goal = (30, 30)
-goal = (16, -2)
+goal = (30, 30)
+# goal = (16, -2)
 goal_tolerance = 2
 
 # Draw start and goal
@@ -58,10 +59,11 @@ def draw_robot(base_pose, joint_poses):
     plt.plot([x0, x1, x2], [y0, y1, y2], color='black', linewidth=0.2)
 
 init_base_pose = (0, 0)
-init_joint_poses = [(5, 0), (10, 0)]
+init_joint_poses = [(5, 0), 
+        (5 + 5 * math.cos(0.25 * math.pi), 5 * math.sin(0.25 * math.pi))]
 draw_robot(init_base_pose, init_joint_poses)
 
-for line in open('path_hard.txt', 'r'):
+for line in open('path_easy_constraint.txt', 'r'):
     coords = [float(s) for s in line.split(',')]
     base_x, base_y, _, \
     j1_x, j1_y, _, \
