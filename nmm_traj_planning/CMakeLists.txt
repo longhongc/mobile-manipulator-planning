@@ -36,6 +36,11 @@ target_link_libraries(test_rrt
   myLibs
 )
 
+add_executable(test_trials src/test_trials.cpp)
+target_link_libraries(test_trials
+  myLibs
+)
+
 # include(FetchContent)
 # FetchContent_Declare(
 #   googletest

@@ -45,6 +45,8 @@ std::vector<State> RRTCSpace::solve() {
   // Total duration of RRT
   std::chrono::seconds duration_s{0};
 
+  std::chrono::milliseconds duration_ms{0};
+
   // Everytime duration passes the threshold
   // print out a time message
   std::chrono::seconds duration_threshold{1};
@@ -59,10 +61,13 @@ std::vector<State> RRTCSpace::solve() {
 
     if (euclidean_distance(ee_coord, goal_coord_) <= goal_tolerance_) {
       std::cout << "\033[32mFound solution\033[0m" << std::endl;
+      search_time_ = duration_ms.count();
       return this->generate_path(curr_node);
     }
 
     duration_s = std::chrono::duration_cast<std::chrono::seconds>(
+        std::chrono::steady_clock::now() - start_time);
+    duration_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::steady_clock::now() - start_time);
 
     if (duration_s > duration_threshold) {
@@ -118,6 +123,10 @@ std::shared_ptr<Node> RRTCSpace::sample_node() {
   StateInput random_input = 
     {uniform_sample_vdot(gen), uniform_sample_vdot(gen), 
      angle_input, -angle_input};
+
+  // StateInput random_input = 
+    // {uniform_sample_vdot(gen), uniform_sample_vdot(gen), 
+     // uniform_sample_wdot(gen), uniform_sample_wdot(gen)}; 
 
   auto traj = problem_ptr_->robot->forward_simulation(
     nearest_state, random_input);
@@ -210,4 +219,15 @@ void RRTCSpace::save_search_tree_to_file(std::string file_name) {
   return;
 }
 
+double RRTCSpace::search_time() {
+  return search_time_;
+}
+
+double RRTCSpace::search_node() {
+  return nodes_.size();
+}
+
+double RRTCSpace::path_time() {
+  return path_.back().time;
+}
 

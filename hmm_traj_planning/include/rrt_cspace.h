@@ -30,6 +30,10 @@ class RRTCSpace {
     void save_path_to_file(std::string file_name);
     void save_search_tree_to_file(std::string file_name);
 
+    double search_time();
+    double search_node();
+    double path_time();
+
     const std::chrono::seconds RRT_TIME_LIMIT{120};
     
   private:
@@ -49,4 +53,6 @@ class RRTCSpace {
     std::vector<std::shared_ptr<Node>> nodes_;
 
     std::vector<State> path_;
+
+    double search_time_ = 0.0;
 };
